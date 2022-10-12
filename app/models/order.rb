@@ -1,6 +1,6 @@
 class Order < ApplicationRecord
   # 1つのorderは複数のline_food（仮注文）を持つ
-    has_many :line_foods
+  has_many :line_foods
 
   validates :total_price, numericality: { greater_than: 0 }
 

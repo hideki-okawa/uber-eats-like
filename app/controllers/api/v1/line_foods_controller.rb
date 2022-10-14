@@ -26,6 +26,18 @@ module Api
         end
       end
 
+      def index
+        line_foods = LineFood.all
+        
+        if line_foods.exists?
+          render json: {
+            line_foods: line_foods
+          }, status: :ok
+        else
+          render json: {}, status: :no_content
+        end
+      end
+      
       private
 
       def set_food

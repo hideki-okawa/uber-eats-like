@@ -1,8 +1,8 @@
 module Api
   module V1
     class LineFoodsController < ApplicationController
-      # create処理の前に仮注文を取得する
-      before_action :set_food, only: %i[create]
+      # create replace処理の前に仮注文を取得する
+      before_action :set_food, only: %i[create replace]
 
       def create
         # すでに別店舗で仮注文されていたら406を返す
@@ -13,7 +13,7 @@ module Api
           }, status: :not_acceptable
         end
 
-        # line_foodインスタンスの生成
+        # line_foodインスタンスの生成or更新
         set_line_food(@ordered_food)
 
         # line_foodをDBに保存する
@@ -42,6 +42,24 @@ module Api
           }, status: :ok
         else
           render json: {}, status: :no_content
+        end
+      end
+
+      def replace
+        # アクティブな仮注文を非アクティブにする
+        LineFood.active.other_restaurant(@ordered_food.restaurant.id).each do |line_food|
+          line_food.update_attribute(:active, false)
+        end
+
+        # line_foodインスタンスの生成or更新
+        set_line_food(@ordered_food)
+
+        if @line_food.save
+          render json: {
+            line_food: @line_food
+          }, status: :created
+        else
+          render json: {}, status: :internal_server_error
         end
       end
       

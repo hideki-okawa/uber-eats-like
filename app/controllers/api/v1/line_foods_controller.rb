@@ -27,8 +27,8 @@ module Api
       end
 
       def index
-        line_foods = LineFood.all
-        
+        # アクティブな仮注文を取得
+        line_foods = LineFood.active
         if line_foods.exists?
           render json: {
             line_foods: line_foods

@@ -31,7 +31,14 @@ module Api
         line_foods = LineFood.active
         if line_foods.exists?
           render json: {
-            line_foods: line_foods
+            # LineFoodのidを配列形式で返す
+            line_food_ids: line_foods.map { |line_food| line_food.id },
+            # レストラン情報
+            restaurant: line_foods[0].restaurant,
+            # line_foodインスタンスの数量
+            count: line_foods.sum { |line_food| line_food[:count] },
+            # line_foodインスタンスの数量×料金
+            amount: line_foods.sum { |line_food| line_food.total_amount },
           }, status: :ok
         else
           render json: {}, status: :no_content

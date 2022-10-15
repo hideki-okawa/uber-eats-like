@@ -55,6 +55,11 @@ const ItemWrapper = styled.div`
 	margin: 16px;
 `;
 
+const submitOrder = () => {
+	// 後ほど仮注文のAPIを実装します
+	console.log("登録ボタンが押された！");
+};
+
 export const Foods = ({ match }) => {
 	const [foodsState, dispatch] = useReducer(foodsReducer, foodsInitialState);
 
@@ -118,9 +123,34 @@ export const Foods = ({ match }) => {
 			{/* isOpenOrderDialogがTrueのときにモーダルを開く */}
 			{state.isOpenOrderDialog && (
 				<FoodOrderDialog
-					food={state.selectedFood}
 					isOpen={state.isOpenOrderDialog}
-					onClose={() => setState({ ...state, isOpenOrderDialog: false })}
+					food={state.selectedFood}
+					countNumber={state.selectedFoodCount}
+					// selectedFoodCount のstateを+1する
+					onClickCountUp={() =>
+						setState({
+							...state,
+							selectedFoodCount: state.selectedFoodCount + 1,
+						})
+					}
+					// selectedFoodCount のstateを-1する
+					onClickCountDown={() => {
+						setState({
+							...state,
+							selectedFoodCount: state.selectedFoodCount - 1,
+						});
+					}}
+					// 注文ボタン
+					onClickOrder={() => submitOrder()}
+					// モーダルを閉じたタイミングでstateをリセットする
+					onClose={() =>
+						setState({
+							...state,
+							isOpenOrderDialog: false,
+							selectedFood: null,
+							selectedFoodCount: 1,
+						})
+					}
 				/>
 			)}
 		</Fragment>

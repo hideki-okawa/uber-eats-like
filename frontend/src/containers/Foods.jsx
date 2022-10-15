@@ -1,5 +1,6 @@
 import React, { Fragment, useEffect, useReducer } from "react";
 import {
+	// foodsInitialStateとしてimport
 	initialState as foodsInitialState,
 	foodsActionTypes,
 	foodsReducer,

@@ -1,3 +1,4 @@
+// APIの状態を示す値
 export const REQUEST_STATE = {
 	INITIAL: "INITIAL",
 	LOADING: "LOADING",

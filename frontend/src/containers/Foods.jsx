@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import { LocalMallIcon } from "../components/Icons";
 import { FoodWrapper } from "../components/FoodWrapper";
 import Skeleton from "@mui/material/Skeleton";
+import { FoodOrderDialog } from "../components/FoodOrderDialog";
 
 import {
 	// foodsInitialStateとしてimport
@@ -114,6 +115,14 @@ export const Foods = ({ match }) => {
 					))
 				)}
 			</FoodsList>
+			{/* isOpenOrderDialogがTrueのときにモーダルを開く */}
+			{state.isOpenOrderDialog && (
+				<FoodOrderDialog
+					food={state.selectedFood}
+					isOpen={state.isOpenOrderDialog}
+					onClose={() => setState({ ...state, isOpenOrderDialog: false })}
+				/>
+			)}
 		</Fragment>
 	);
 };

@@ -29,3 +29,15 @@ export const replaceLineFoods = (params) => {
 			throw e;
 		});
 };
+
+// 仮注文の一覧を取得
+export const fetchLineFoods = () => {
+	return axios
+		.get(lineFoods)
+		.then((resp) => {
+			return resp.data;
+		})
+		.catch((e) => {
+			throw e;
+		});
+};

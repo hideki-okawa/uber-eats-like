@@ -3,7 +3,7 @@ module Api
     class OrdersController < ApplicationController
       def create
         # 仮注文の取得
-        posted_line_foods = LineFood.whre(id: params[:line_food_ids])
+        posted_line_foods = LineFood.where(id: params[:line_food_ids])
         order = Order.new(
           total_price: total_price(posted_line_foods),
         )

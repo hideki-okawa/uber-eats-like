@@ -1,6 +1,16 @@
 # README
 
-## format
+# usage
+
+```
+$ npm start
+```
+
+```
+$ rails s
+```
+
+## Rails format
 
 ```
 $ bundle exec rubocop -x

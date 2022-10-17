@@ -18,6 +18,7 @@ const AmountText = styled.p`
 	font-weight: bold;
 `;
 
+// 注文リスト
 export const OrderDetailItem = ({
 	restaurantId,
 	restaurantName,

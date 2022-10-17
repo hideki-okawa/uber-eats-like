@@ -16,14 +16,15 @@ export const postLineFoods = (params) => {
 		});
 };
 
+// 今ある注文を削除して新しい注文に変更する
 export const replaceLineFoods = (params) => {
 	return axios
 		.put(lineFoodsReplace, {
 			food_id: params.foodId,
 			count: params.count,
 		})
-		.then((res) => {
-			return res.data;
+		.then((resp) => {
+			return resp.data;
 		})
 		.catch((e) => {
 			throw e;

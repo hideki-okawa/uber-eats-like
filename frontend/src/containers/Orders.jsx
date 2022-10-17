@@ -48,6 +48,7 @@ export const Orders = () => {
 
 	useEffect(() => {
 		dispatch({ type: lineFoodsActionTypes.FETCHING });
+		// 仮注文リストの取得
 		fetchLineFoods()
 			.then((data) => {
 				dispatch({
@@ -95,6 +96,7 @@ export const Orders = () => {
 							state.fetchState === REQUEST_STATE.LOADING ? (
 								<CircularProgress />
 							) : (
+								// 仮注文が存在すれば表示
 								state.lineFoodsSummary && (
 									<OrderDetailItem
 										restaurantFee={state.lineFoodsSummary.restaurant.fee}

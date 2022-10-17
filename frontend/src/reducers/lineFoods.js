@@ -1,8 +1,12 @@
 import { REQUEST_STATE } from "../constants";
 
+// 初期State
 export const initialState = {
+	// GET APIの状態を示すState
 	fetchState: REQUEST_STATE.INITIAL,
+	// POST APIの状態を示すState
 	postState: REQUEST_STATE.INITIAL,
+	// 仮注文のリスト
 	lineFoosSummary: null,
 };
 
